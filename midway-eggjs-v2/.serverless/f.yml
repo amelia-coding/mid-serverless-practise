@@ -1,0 +1,23 @@
+service:
+  name: midway-http
+provider:
+  name: aliyun
+  initTimeout: 10
+deployType: egg
+custom:
+  customDomain:
+    domainName: auto
+functions:
+  app_index:
+    handler: index.handler
+    events:
+      - http:
+          path: /*
+package:
+  include:
+    - dist
+layers:
+  eggLayer:
+    path: npm:@midwayjs/egg-layer
+globalDependencies:
+  '@midwayjs/simple-lock': '*'

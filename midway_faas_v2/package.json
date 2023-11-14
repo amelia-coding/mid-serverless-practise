@@ -13,6 +13,7 @@
     "dev": "cross-env NODE_ENV=local midway-bin dev --ts",
     "test": "cross-env midway-bin test --ts",
     "deploy": "cross-env UDEV_NODE_ENV=production midway-bin deploy",
+    "package": "cross-env UDEV_NODE_ENV=production midway-bin package -c",
     "lint": "mwts check",
     "lint:fix": "mwts fix"
   },
