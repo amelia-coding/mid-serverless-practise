@@ -1,0 +1,32 @@
+edition: 1.0.0
+name: "midway_faas_v3" #  项目名称
+access: "default" #  秘钥别名
+
+vars:
+  service:
+    name: midway_faas_v3_service
+    description: 'demo for fc-deploy component'
+services:
+  project-0981cd9b07:
+    component: devsapp/fc
+    props:
+      region: cn-hangzhou
+      service: ${vars.service}
+      function:
+        name: hello # 函数名
+        handler: helloHttpService.handleHTTPEvent
+        codeUri: '.'
+        initializer: helloHttpService.initializer
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              serviceName: ${vars.service.name}
+              functionName: helloHttpService-handleHTTPEvent
+      triggers:
+        - name: http
+          type: http
+          config:
+            methods:
+              - GET
